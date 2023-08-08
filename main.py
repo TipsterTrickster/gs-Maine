@@ -43,6 +43,8 @@ import statistics
 import numpy as np
 import os
 import cv2
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 # todo: clean up this code and better document
 
@@ -129,16 +131,69 @@ class Window(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.predictingTrack = False
 
-        self.VBL = QVBoxLayout()
-
-        self.VBL.addWidget(self.videoStream)
-
         self.Worker1 = Worker1()
+
+        self.startStreamButton.clicked.connect(self.startStream)
+
+        self.openPredictionButton.clicked.connect(self.autoPredict)
+
+
+    def autoPredict(self):
+        flight = Balloon_Coordinates("300234064901600")
+        flight.get_coor_alt()
+
+        lat = flight.get_coor_alt()[0]
+        lon = flight.get_coor_alt()[1]
+        current_alt = flight.get_coor_alt()[2]
+        ascent = self.ascentRateBox.toPlainText()
+        descent = self.descentRateBox.toPlainText()
+
+        if(Balloon_Coordinates.ascentRate >= 0):
+            burst = self.burstAltitudeBox.toPlainText()
+        else:
+            burst = current_alt + 1
+
+        options = webdriver.ChromeOptions()
+        options.add_experimental_option("detach", True)
+        options.add_argument("--start-maximized")
+        # Using Chrome to access web
+        driver = webdriver.Chrome(options=options)
+        # Open the website
+        driver.get('https://predict.sondehub.org/')
+
+        # enters balloon current position
+        driver.find_element(By.ID, "lat").clear()
+        driver.find_element(By.ID, "lat").send_keys(lat)
+
+        driver.find_element(By.ID, "lon").clear()
+        driver.find_element(By.ID, "lon").send_keys(lon)
+
+        driver.find_element(By.ID, "initial_alt").clear()
+        driver.find_element(By.ID, "initial_alt").send_keys(current_alt)
+
+        if(Balloon_Coordinates.ascentRate >= 0):
+            driver.find_element(By.ID, "ascent").clear()
+            driver.find_element(By.ID, "ascent").send_keys(ascent)
+        else:
+            driver.find_element(By.ID, "drag").clear()
+            driver.find_element(By.ID, "drag").send_keys(descent)
+
+        driver.find_element(By.ID, "burst").clear()
+        driver.find_element(By.ID, "burst").send_keys(burst)
+
+        driver.find_element(By.ID, "run_pred_btn").click()
+
+    def startStream(self):
+        global streamLink
+        if(self.streamLinkBox.toPlainText() == ''):
+            streamLink = 0
+            self.statusBox.setPlainText("Using Webcam for Video Stream")
+        else:
+            streamLink = self.streamLinkBox.toPlainText()
+            self.statusBox.setPlainText('Video Stream at: {}'.format(streamLink))
 
         self.Worker1.start()
         self.Worker1.ImageUpdate.connect(self.ImageUpdateSlot)
-        self.setLayout(self.VBL)
-
 
     def ImageUpdateSlot(self, Image):
         self.videoStream.setPixmap(QPixmap.fromImage(Image))
@@ -500,14 +555,14 @@ class Worker1(QThread):
     ImageUpdate = pyqtSignal(QImage)
     def run(self):
         self.ThreadActive = True
-        Capture = cv2.VideoCapture(0)
+        Capture = cv2.VideoCapture(streamLink)
         while self.ThreadActive:
             ret, frame = Capture.read()
             if ret:
                 Image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 FlippedImage = cv2.flip(Image, 1)
                 ConvertToQtFormat = QImage(FlippedImage.data, FlippedImage.shape[1], FlippedImage.shape[0], QImage.Format_RGB888)
-                Pic = ConvertToQtFormat.scaled(640, 480, Qt.KeepAspectRatio)
+                Pic = ConvertToQtFormat.scaled(1080, 720)
                 self.ImageUpdate.emit(Pic)
         Capture.release()
 

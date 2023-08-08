@@ -82,6 +82,7 @@ class Balloon_Coordinates:
         # print(data) # for debugging server problem, will print a lot
 
         # print(data['data'][-1][3])
+        Balloon_Coordinates.ascentRate = (data['data'][-1][5] - data['data'][-10][5])/(data['data'][-1][2] - data['data'][-10][2])
 
         # Lat, Long, Alt
         self.coor_alt = [data['data'][-1][3], data['data'][-1][4], data['data'][-1][5]]
