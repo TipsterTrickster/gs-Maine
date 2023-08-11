@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>933</width>
-    <height>707</height>
+    <width>1135</width>
+    <height>865</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,58 +16,6 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_5">
-    <item row="1" column="0">
-     <layout class="QGridLayout" name="gridLayout_11">
-      <item row="0" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0">
-        <item>
-         <widget class="QLabel" name="label_12">
-          <property name="minimumSize">
-           <size>
-            <width>120</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>120</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Status Box:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPlainTextEdit" name="statusBox">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>300</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>999999</width>
-            <height>40</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </item>
     <item row="0" column="1">
      <layout class="QGridLayout" name="gridLayout_8">
       <item row="1" column="0">
@@ -89,6 +37,25 @@
           <property name="text">
            <string>Start Basic 
  Tracking</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2">
+         <widget class="QPushButton" name="EStopButton">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>E-Stop</string>
           </property>
          </widget>
         </item>
@@ -128,25 +95,6 @@
           </property>
           <property name="text">
            <string>Stop Tracking</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="2">
-         <widget class="QPushButton" name="EStopButton">
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>40</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>40</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>E-Stop</string>
           </property>
          </widget>
         </item>
@@ -365,6 +313,58 @@
       </item>
      </layout>
     </item>
+    <item row="1" column="0">
+     <layout class="QGridLayout" name="gridLayout_11">
+      <item row="0" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0">
+        <item>
+         <widget class="QLabel" name="label_12">
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>120</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Status Box:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPlainTextEdit" name="statusBox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>300</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>999999</width>
+            <height>40</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="sizePolicy">
@@ -375,18 +375,26 @@
       </property>
       <property name="minimumSize">
        <size>
-        <width>402</width>
-        <height>332</height>
+        <width>500</width>
+        <height>600</height>
        </size>
       </property>
       <property name="maximumSize">
        <size>
-        <width>999999</width>
-        <height>999999</height>
+        <width>1580</width>
+        <height>1265</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+        <weight>50</weight>
+        <italic>false</italic>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>3</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -427,8 +435,8 @@
           <rect>
            <x>10</x>
            <y>30</y>
-           <width>441</width>
-           <height>123</height>
+           <width>525</width>
+           <height>125</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout" columnstretch="1,0,0">
@@ -584,7 +592,7 @@
            <x>10</x>
            <y>10</y>
            <width>441</width>
-           <height>147</height>
+           <height>152</height>
           </rect>
          </property>
          <layout class="QFormLayout" name="formLayout_2">
@@ -706,8 +714,8 @@
           <rect>
            <x>10</x>
            <y>10</y>
-           <width>441</width>
-           <height>141</height>
+           <width>478</width>
+           <height>145</height>
           </rect>
          </property>
          <layout class="QFormLayout" name="formLayout_4">
@@ -815,101 +823,18 @@
       </widget>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
-        <string>Page</string>
+        <string>Misc Info</string>
        </attribute>
        <widget class="QWidget" name="layoutWidget_4">
         <property name="geometry">
          <rect>
           <x>11</x>
           <y>11</y>
-          <width>422</width>
-          <height>354</height>
+          <width>471</width>
+          <height>411</height>
          </rect>
         </property>
-        <layout class="QGridLayout" name="gridLayout_2" rowstretch="5,0,0,0,0,0,0,0,0,0,0">
-         <item row="3" column="2">
-          <widget class="QPlainTextEdit" name="elevationDisplay">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>20</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="1">
-          <widget class="QLabel" name="label_15">
-           <property name="text">
-            <string>Expected Burst Altitude (m)</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QLabel" name="label_9">
-           <property name="text">
-            <string>Azimuth: </string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="2">
-          <widget class="QPlainTextEdit" name="burstAltitudeBox">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>25</height>
-            </size>
-           </property>
-           <property name="verticalScrollBarPolicy">
-            <enum>Qt::ScrollBarAlwaysOff</enum>
-           </property>
-           <property name="horizontalScrollBarPolicy">
-            <enum>Qt::ScrollBarAlwaysOff</enum>
-           </property>
-           <property name="plainText">
-            <string>32000</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="QPlainTextEdit" name="distanceDisplay">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>20</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1" colspan="2">
-          <widget class="QLabel" name="label_18">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>25</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>10</pointsize>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Auto Prediction</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QLabel" name="label_10">
-           <property name="text">
-            <string>Elevation: </string>
-           </property>
-          </widget>
-         </item>
+        <layout class="QGridLayout" name="gridLayout_2" rowstretch="5,0,0,0,0,0,0,0,0">
          <item row="0" column="1">
           <widget class="QPushButton" name="backToSunButton">
            <property name="minimumSize">
@@ -936,26 +861,24 @@
            </property>
           </widget>
          </item>
-         <item row="2" column="2">
-          <widget class="QPlainTextEdit" name="azimuthDisplay">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>20</height>
-            </size>
+         <item row="5" column="1">
+          <widget class="QLabel" name="label_15">
+           <property name="text">
+            <string>Expected Burst Altitude (m)</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="2">
-          <widget class="QPushButton" name="calibrateButton">
-           <property name="minimumSize">
-            <size>
-             <width>136</width>
-             <height>28</height>
-            </size>
-           </property>
+         <item row="3" column="1">
+          <widget class="QLabel" name="label_10">
            <property name="text">
-            <string>Set Starting Position</string>
+            <string>Elevation: </string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>Azimuth: </string>
            </property>
           </widget>
          </item>
@@ -969,7 +892,7 @@
          <item row="7" column="1">
           <widget class="QLabel" name="label_19">
            <property name="text">
-            <string>Decent rate (m/s)</string>
+            <string>Descent rate (m/s)</string>
            </property>
           </widget>
          </item>
@@ -992,8 +915,34 @@
            </property>
           </widget>
          </item>
-         <item row="7" column="2">
-          <widget class="QPlainTextEdit" name="decentRateBox">
+         <item row="6" column="3">
+          <widget class="QPushButton" name="getAscentRateButton">
+           <property name="text">
+            <string>Get Ascent Rate</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="2" colspan="2">
+          <widget class="QPlainTextEdit" name="burstAltitudeBox">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="verticalScrollBarPolicy">
+            <enum>Qt::ScrollBarAlwaysOff</enum>
+           </property>
+           <property name="horizontalScrollBarPolicy">
+            <enum>Qt::ScrollBarAlwaysOff</enum>
+           </property>
+           <property name="plainText">
+            <string>32000</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="2" colspan="2">
+          <widget class="QPlainTextEdit" name="descentRateBox">
            <property name="maximumSize">
             <size>
              <width>16777215</width>
@@ -1011,10 +960,77 @@
            </property>
           </widget>
          </item>
-         <item row="8" column="1" colspan="2">
+         <item row="8" column="1" colspan="3">
           <widget class="QPushButton" name="openPredictionButton">
            <property name="text">
             <string>Open Prediction</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1" colspan="3">
+          <widget class="QLabel" name="label_18">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+             <weight>75</weight>
+             <italic>false</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Auto Prediction</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2" colspan="2">
+          <widget class="QPlainTextEdit" name="elevationDisplay">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>20</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2" colspan="2">
+          <widget class="QPlainTextEdit" name="azimuthDisplay">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>20</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2" colspan="2">
+          <widget class="QPlainTextEdit" name="distanceDisplay">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>20</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2" colspan="2">
+          <widget class="QPushButton" name="calibrateButton">
+           <property name="minimumSize">
+            <size>
+             <width>136</width>
+             <height>28</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Set Starting Position</string>
            </property>
           </widget>
          </item>
@@ -1033,26 +1049,7 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="0" column="0">
-         <layout class="QGridLayout" name="gridLayout_6" rowstretch="1,0,0" columnstretch="1,0">
-          <item row="0" column="0" colspan="2">
-           <widget class="QLabel" name="videoStream">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
+         <layout class="QGridLayout" name="gridLayout_6" rowstretch="9,0,0" columnstretch="1,0,0">
           <item row="2" column="0">
            <widget class="QPlainTextEdit" name="streamLinkBox">
             <property name="minimumSize">
@@ -1066,19 +1063,6 @@
               <width>16777215</width>
               <height>30</height>
              </size>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QPushButton" name="startStreamButton">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Start Stream</string>
             </property>
            </widget>
           </item>
@@ -1107,6 +1091,7 @@
               <family>MS Shell Dlg 2</family>
               <pointsize>8</pointsize>
               <weight>75</weight>
+              <italic>false</italic>
               <bold>true</bold>
              </font>
             </property>
@@ -1121,6 +1106,41 @@
             </property>
            </widget>
           </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QLabel" name="videoStream">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QPushButton" name="startStreamButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Start Stream</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </item>
        </layout>
@@ -1129,6 +1149,589 @@
        <attribute name="title">
         <string>RFD900</string>
        </attribute>
+       <layout class="QGridLayout" name="gridLayout_14">
+        <item row="0" column="0">
+         <widget class="QFrame" name="frame_5">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_13">
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="gridLayout_12">
+             <item row="2" column="3">
+              <widget class="QPlainTextEdit" name="latitudeBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="11" column="3">
+              <widget class="QPlainTextEdit" name="accelZBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="2">
+              <widget class="QLabel" name="label_38">
+               <property name="text">
+                <string>Latitude</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="2">
+              <widget class="QLabel" name="label_43">
+               <property name="text">
+                <string>NetEastVel</string>
+               </property>
+              </widget>
+             </item>
+             <item row="10" column="2">
+              <widget class="QLabel" name="label_46">
+               <property name="text">
+                <string>Acceleration Y</string>
+               </property>
+              </widget>
+             </item>
+             <item row="13" column="3">
+              <widget class="QPlainTextEdit" name="rollBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QPlainTextEdit" name="satInViewBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="2">
+              <widget class="QLabel" name="label_39">
+               <property name="text">
+                <string>Longitude</string>
+               </property>
+              </widget>
+             </item>
+             <item row="14" column="3">
+              <widget class="QPlainTextEdit" name="yawBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="3">
+              <widget class="QPlainTextEdit" name="longitudeBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="11" column="2">
+              <widget class="QLabel" name="label_47">
+               <property name="text">
+                <string>Acceleration Z</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="3">
+              <widget class="QPlainTextEdit" name="altitudeBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="3">
+              <widget class="QPlainTextEdit" name="pressureBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="10" column="3">
+              <widget class="QPlainTextEdit" name="accelYBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="3">
+              <widget class="QPlainTextEdit" name="accelXBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="2">
+              <widget class="QLabel" name="label_41">
+               <property name="text">
+                <string>Pressure</string>
+               </property>
+              </widget>
+             </item>
+             <item row="13" column="2">
+              <widget class="QLabel" name="label_49">
+               <property name="text">
+                <string>Roll</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QLabel" name="label_37">
+               <property name="text">
+                <string>Fix Type</string>
+               </property>
+              </widget>
+             </item>
+             <item row="14" column="2">
+              <widget class="QLabel" name="label_50">
+               <property name="text">
+                <string>Yaw</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="3">
+              <widget class="QPlainTextEdit" name="netEastVel">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QPlainTextEdit" name="fixTypeBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="2">
+              <widget class="QLabel" name="label_42">
+               <property name="text">
+                <string>NetNorthVel</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="3">
+              <widget class="QPlainTextEdit" name="netNorthVelBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="12" column="2">
+              <widget class="QLabel" name="label_48">
+               <property name="text">
+                <string>Pitch</string>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="2">
+              <widget class="QLabel" name="label_45">
+               <property name="text">
+                <string>Acceleration X</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QLabel" name="label_36">
+               <property name="text">
+                <string>Satellites In View</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="3">
+              <widget class="QPlainTextEdit" name="netDownVel">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="2">
+              <widget class="QLabel" name="label_44">
+               <property name="text">
+                <string>NetDownVel</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="2">
+              <widget class="QLabel" name="label_40">
+               <property name="text">
+                <string>Altitude</string>
+               </property>
+              </widget>
+             </item>
+             <item row="12" column="3">
+              <widget class="QPlainTextEdit" name="pitchBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0" rowspan="2" colspan="2">
+              <widget class="QFrame" name="frame_4">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>60</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>8</pointsize>
+                 <weight>50</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_9" columnstretch="1,0,0,0">
+                <item row="1" column="2">
+                 <widget class="QPushButton" name="RefreshRFDCOM">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>25</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Refresh</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QPushButton" name="RFDConnectButton">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>25</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Confirm RFD</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0" colspan="3">
+                 <widget class="QLabel" name="label_20">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <weight>75</weight>
+                    <italic>false</italic>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Select RFD From List Below</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QComboBox" name="RFDComboBox">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>25</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_21">
+               <property name="font">
+                <font>
+                 <pointsize>10</pointsize>
+                 <weight>75</weight>
+                 <italic>false</italic>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Current Packet</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_22">
+               <property name="text">
+                <string>Packets Received</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_23">
+               <property name="text">
+                <string>Date</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="label_24">
+               <property name="text">
+                <string>Time</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="label_25">
+               <property name="text">
+                <string>Battery Voltage</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="0">
+              <widget class="QLabel" name="label_26">
+               <property name="text">
+                <string>3.3 Voltage</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="0">
+              <widget class="QLabel" name="label_28">
+               <property name="text">
+                <string>5.0 Voltage</string>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="0">
+              <widget class="QLabel" name="label_29">
+               <property name="text">
+                <string>Radio Voltage</string>
+               </property>
+              </widget>
+             </item>
+             <item row="10" column="0">
+              <widget class="QLabel" name="label_30">
+               <property name="text">
+                <string>Analog Internal Temperature</string>
+               </property>
+              </widget>
+             </item>
+             <item row="11" column="0">
+              <widget class="QLabel" name="label_33">
+               <property name="text">
+                <string>Analog External Temperature</string>
+               </property>
+              </widget>
+             </item>
+             <item row="12" column="0">
+              <widget class="QLabel" name="label_34">
+               <property name="text">
+                <string>Digital Internal Temperature</string>
+               </property>
+              </widget>
+             </item>
+             <item row="13" column="0">
+              <widget class="QLabel" name="label_35">
+               <property name="text">
+                <string>Digital External Temperature</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QPlainTextEdit" name="currentPacketBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QPlainTextEdit" name="packetsReceivedBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QPlainTextEdit" name="dateBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QPlainTextEdit" name="timeBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QPlainTextEdit" name="batteryVoltageBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="1">
+              <widget class="QPlainTextEdit" name="voltage3v3Box">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="1">
+              <widget class="QPlainTextEdit" name="voltage5vBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="1">
+              <widget class="QPlainTextEdit" name="radioVoltageBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="10" column="1">
+              <widget class="QPlainTextEdit" name="analogInternalTempBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="11" column="1">
+              <widget class="QPlainTextEdit" name="analogExternalTempBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="12" column="1">
+              <widget class="QPlainTextEdit" name="digitalInternalTempBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="13" column="1">
+              <widget class="QPlainTextEdit" name="digitalExternalTempBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="14" column="0">
+              <widget class="QLabel" name="label_51">
+               <property name="text">
+                <string>Pressure Sensor Temperature</string>
+               </property>
+              </widget>
+             </item>
+             <item row="14" column="1">
+              <widget class="QPlainTextEdit" name="pressureSensorTempBox"/>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
@@ -1139,7 +1742,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>933</width>
+     <width>1135</width>
      <height>26</height>
     </rect>
    </property>

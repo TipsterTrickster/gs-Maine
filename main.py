@@ -34,6 +34,7 @@ from Balloon_Coordinates import Balloon_Coordinates
 from satelliteTrackingMath import trackMath
 from Ground_Station_Arduino import Ground_Station_Arduino
 import serial.tools.list_ports
+import serial
 import time
 # from pylab import *
 from sunposition import sunpos
@@ -91,6 +92,7 @@ class Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.portNames = []
         self.comPortCounter = 0
         self.refreshArduinoList()
+        self.refreshRFDList()
 
         self.confirmIMEIButton.clicked.connect(self.assignIMEI)
 
@@ -134,17 +136,27 @@ class Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.Worker1 = Worker1()
 
         self.startStreamButton.clicked.connect(self.startStream)
-
         self.openPredictionButton.clicked.connect(self.autoPredict)
+        self.getAscentRateButton.clicked.connect(self.ascentRate)
+        self.RFDComboBox.setCurrentIndex(self.comPortCounter - 1)
 
+        self.Worker2 = Worker2()
+
+        self.RFDConnectButton.clicked.connect(self.connectToRFD)
+        global comport
+        comport = self.portNames[self.RFDComboBox.currentIndex()]
+
+        self.RefreshRFDCOM.clicked.connect(self.refreshRFDList)
+        
+    def ascentRate(self):
+        self.ascentRateBox.setPlainText(str(self.Balloon.ascentRate))
 
     def autoPredict(self):
-        flight = Balloon_Coordinates("300234064901600")
-        flight.get_coor_alt()
+        self.Balloon.get_coor_alt()
 
-        lat = flight.get_coor_alt()[0]
-        lon = flight.get_coor_alt()[1]
-        current_alt = flight.get_coor_alt()[2]
+        lat = self.Balloon.get_coor_alt()[0]
+        lon = self.Balloon.get_coor_alt()[1]
+        current_alt = self.Balloon.get_coor_alt()[2]
         ascent = self.ascentRateBox.toPlainText()
         descent = self.descentRateBox.toPlainText()
 
@@ -171,17 +183,39 @@ class Window(QtWidgets.QMainWindow, Ui_MainWindow):
         driver.find_element(By.ID, "initial_alt").clear()
         driver.find_element(By.ID, "initial_alt").send_keys(current_alt)
 
-        if(Balloon_Coordinates.ascentRate >= 0):
-            driver.find_element(By.ID, "ascent").clear()
-            driver.find_element(By.ID, "ascent").send_keys(ascent)
-        else:
-            driver.find_element(By.ID, "drag").clear()
-            driver.find_element(By.ID, "drag").send_keys(descent)
+        driver.find_element(By.ID, "ascent").clear()
+        driver.find_element(By.ID, "ascent").send_keys(ascent)
+
+        driver.find_element(By.ID, "drag").clear()
+        driver.find_element(By.ID, "drag").send_keys(descent)
 
         driver.find_element(By.ID, "burst").clear()
         driver.find_element(By.ID, "burst").send_keys(burst)
 
         driver.find_element(By.ID, "run_pred_btn").click()
+
+    def connectToRFD(self):
+        self.Worker2.start()
+        self.Worker2.packetNumber.connect(self.displayRFD)
+    
+    def displayRFD(self, RFDInfo):
+        if len(RFDInfo) >=31:
+            self.currentPacketBox.setPlainText(str(RFDInfo[0].strip()))
+            self.dateBox.setPlainText(str(RFDInfo[6]) + "-" + str(RFDInfo[7]) + "-" + str(RFDInfo[8]))
+            self.timeBox.setPlainText(str(RFDInfo[9]) + ":" + str(RFDInfo[10]) + ":" + str(RFDInfo[11]))
+            self.batteryVoltageBox.setPlainText(str(RFDInfo[15]))
+            self.voltage3v3Box.setPlainText(str(RFDInfo[16]))
+            self.voltage5vBox.setPlainText(str(RFDInfo[17]))
+            self.radioVoltageBox.setPlainText(str(RFDInfo[18]))
+            self.analogInternalTempBox.setPlainText(str(RFDInfo[19]))
+            self.analogExternalTempBox.setPlainText(str(RFDInfo[20]))
+            self.digitalInternalTempBox.setPlainText(str(RFDInfo[22]))
+            self.digitalExternalTempBox.setPlainText(str(RFDInfo[23]))
+            self.pressureSensorTempBox.setPlainText(str(RFDInfo[21]))
+            self.satInViewBox.setPlainText(str(RFDInfo[1]))
+            self.latitudeBox.setPlainText(str(RFDInfo[3]))
+
+            self.fixTypeBox.setPlainText(str(RFDInfo[2]))
 
     def startStream(self):
         global streamLink
@@ -190,7 +224,7 @@ class Window(QtWidgets.QMainWindow, Ui_MainWindow):
             self.statusBox.setPlainText("Using Webcam for Video Stream")
         else:
             streamLink = self.streamLinkBox.toPlainText()
-            self.statusBox.setPlainText('Video Stream at: {}'.format(streamLink))
+            self.statusBox.setPlainText('Video Stream from: {}'.format(streamLink))
 
         self.Worker1.start()
         self.Worker1.ImageUpdate.connect(self.ImageUpdateSlot)
@@ -224,6 +258,18 @@ class Window(QtWidgets.QMainWindow, Ui_MainWindow):
         for port, desc, hwid in sorted(self.ports):
             # self.COMPortComboBox.addItem("[{}] {}: {}".format(i, port, desc))
             self.COMPortComboBox.addItem(desc)
+            self.portNames.append("{}".format(port))
+            self.comPortCounter += 1
+
+    def refreshRFDList(self):
+            # this function searches the list of COM ports, and adds devices that it finds to the COM port combobox
+        self.RFDComboBox.clear()
+        self.ports = serial.tools.list_ports.comports()
+        self.portNames = []
+        self.comPortCounter = 0
+        for port, desc, hwid in sorted(self.ports):
+            # self.COMPortComboBox.addItem("[{}] {}: {}".format(i, port, desc))
+            self.RFDComboBox.addItem(desc)
             self.portNames.append("{}".format(port))
             self.comPortCounter += 1
 
@@ -561,10 +607,25 @@ class Worker1(QThread):
             if ret:
                 Image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 FlippedImage = cv2.flip(Image, 1)
-                ConvertToQtFormat = QImage(FlippedImage.data, FlippedImage.shape[1], FlippedImage.shape[0], QImage.Format_RGB888)
+                ConvertToQtFormat = QImage(FlippedImage.data, FlippedImage.shape[1], FlippedImage.shape[0], FlippedImage.shape[1] * FlippedImage.shape[2] , QImage.Format_RGB888)
                 Pic = ConvertToQtFormat.scaled(1080, 720)
                 self.ImageUpdate.emit(Pic)
+            else:
+                break
         Capture.release()
+
+class Worker2(QThread):
+    packetNumber = pyqtSignal(list)
+    def run(self):
+        self.ThreadActive = True
+        ser = serial.Serial( port = comport, baudrate = 57600, parity = serial.PARITY_NONE, stopbits = serial.STOPBITS_ONE, bytesize = serial.EIGHTBITS, timeout = 1 )
+        while self.ThreadActive:
+            y = ser.readline()
+            xx = y.decode('utf-8')
+            xxx = str(xx)
+            xxxx = xxx.split(",")
+            self.packetNumber.emit(xxxx)
+
 
 class Worker(QObject):
     # worker class to track without making the GUI hang
