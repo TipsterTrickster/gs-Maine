@@ -144,19 +144,9 @@ class Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.Worker2 = Worker2()
 
         self.RFDConnectButton.clicked.connect(self.connectToRFD)
-        global comport
-        comport = self.portNames[self.RFDComboBox.currentIndex()]
 
         self.RefreshRFDCOM.clicked.connect(self.refreshRFDList)
 
-
-        header = ["Packet Number", "SIV", "FixType", "Latitude", \
-                "Longitude", "Altitude", "Year", "Month", "Day", \
-                "Hour", "Min", "Sec", "NNV", "NEV", "NDV", "Battery" ,\
-                "3v3 Supply", "5v Supply", "Radio Supply", "Analog Internal", \
-                "Analog External", "Altimeter Temp", "Digital Internal", \
-                "Digital Eternal", "Pressure", "Accel A", "Accel Y", "Accel z", \
-                "Pitch", "Roll", "Yaw"]
         
         global packet_count
         global fileName
@@ -166,11 +156,6 @@ class Window(QtWidgets.QMainWindow, Ui_MainWindow):
         fileName = "RFD900x_Data.csv"
         file = open(fileName, "a")
         file.close()
-
-        with open(fileName, "a", newline = '\n') as f:
-            writer = csv.writer(f, delimiter=',')
-            writer.writerow(header)
-            file.close()
         
     def ascentRate(self):
         self.ascentRateBox.setPlainText(str(self.Balloon.ascentRate))
@@ -222,12 +207,32 @@ class Window(QtWidgets.QMainWindow, Ui_MainWindow):
             driver.find_element(By.ID, "run_pred_btn").click()
 
     def connectToRFD(self):
-        self.Worker2.start()
-        self.Worker2.packetNumber.connect(self.displayRFD)
+        global comport
+        try:
+            comport = self.portNames[self.RFDComboBox.currentIndex()]
+        except:
+            self.statusBox.setPlainText("Error Connecting to RFD")
+        else:
+            self.Worker2.start()
+            self.Worker2.packetNumber.connect(self.displayRFD)
     
     def displayRFD(self, RFDInfo):
 
         global packet_count
+
+        header = ["Packet Number", "SIV", "FixType", "Latitude", \
+                "Longitude", "Altitude", "Year", "Month", "Day", \
+                "Hour", "Min", "Sec", "NNV", "NEV", "NDV", "Battery" ,\
+                "3v3 Supply", "5v Supply", "Radio Supply", "Analog Internal", \
+                "Analog External", "Altimeter Temp", "Digital Internal", \
+                "Digital Eternal", "Pressure", "Accel A", "Accel Y", "Accel z", \
+                "Pitch", "Roll", "Yaw"]
+
+        if packet_count == 0:
+            with open(fileName, "a", newline = '\n') as f:
+                writer = csv.writer(f, delimiter=',')
+                writer.writerow(header)
+                file.close()
 
         finalData = xx.split(",")
         if len(finalData) > 10:

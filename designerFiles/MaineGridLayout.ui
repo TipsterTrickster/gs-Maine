@@ -394,7 +394,7 @@
        </font>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -1181,7 +1181,7 @@
             <property name="maximumSize">
              <size>
               <width>90</width>
-              <height>16777215</height>
+              <height>30</height>
              </size>
             </property>
             <property name="text">
@@ -1200,7 +1200,7 @@
             <property name="maximumSize">
              <size>
               <width>90</width>
-              <height>16777215</height>
+              <height>30</height>
              </size>
             </property>
             <property name="text">
