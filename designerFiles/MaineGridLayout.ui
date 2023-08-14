@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1135</width>
-    <height>865</height>
+    <width>1040</width>
+    <height>714</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -375,7 +375,7 @@
       </property>
       <property name="minimumSize">
        <size>
-        <width>500</width>
+        <width>750</width>
         <height>600</height>
        </size>
       </property>
@@ -394,7 +394,7 @@
        </font>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>2</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -408,7 +408,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>458</width>
+          <width>491</width>
           <height>159</height>
          </rect>
         </property>
@@ -420,7 +420,7 @@
         </property>
         <property name="maximumSize">
          <size>
-          <width>458</width>
+          <width>550</width>
           <height>158</height>
          </size>
         </property>
@@ -435,7 +435,7 @@
           <rect>
            <x>10</x>
            <y>30</y>
-           <width>525</width>
+           <width>471</width>
            <height>125</height>
           </rect>
          </property>
@@ -564,7 +564,7 @@
          <rect>
           <x>0</x>
           <y>190</y>
-          <width>458</width>
+          <width>491</width>
           <height>163</height>
          </rect>
         </property>
@@ -576,7 +576,7 @@
         </property>
         <property name="maximumSize">
          <size>
-          <width>458</width>
+          <width>550</width>
           <height>158</height>
          </size>
         </property>
@@ -591,8 +591,8 @@
           <rect>
            <x>10</x>
            <y>10</y>
-           <width>441</width>
-           <height>152</height>
+           <width>471</width>
+           <height>151</height>
           </rect>
          </property>
          <layout class="QFormLayout" name="formLayout_2">
@@ -615,13 +615,6 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>Ground Station Latitude: </string>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="1">
            <widget class="QPlainTextEdit" name="GSLatBox">
             <property name="maximumSize">
@@ -630,16 +623,15 @@
               <height>20</height>
              </size>
             </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>Ground Station Longitude: </string>
+            <property name="verticalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
+          <item row="2" column="1">
            <widget class="QPlainTextEdit" name="GSLongBox">
             <property name="maximumSize">
              <size>
@@ -647,16 +639,15 @@
               <height>20</height>
              </size>
             </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="label_3">
-            <property name="text">
-             <string>Ground Station Altitude (m): </string>
+            <property name="verticalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
             </property>
            </widget>
           </item>
-          <item row="4" column="1">
+          <item row="3" column="1">
            <widget class="QPlainTextEdit" name="GSAltBox">
             <property name="maximumSize">
              <size>
@@ -664,9 +655,15 @@
               <height>20</height>
              </size>
             </property>
+            <property name="verticalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
            </widget>
           </item>
-          <item row="5" column="1">
+          <item row="4" column="1">
            <widget class="QPushButton" name="confirmGSLocationButton">
             <property name="minimumSize">
              <size>
@@ -679,6 +676,27 @@
             </property>
            </widget>
           </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Ground Station Latitude: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Ground Station Longitude: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Ground Station Altitude (m): </string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </widget>
@@ -687,7 +705,7 @@
          <rect>
           <x>0</x>
           <y>360</y>
-          <width>458</width>
+          <width>491</width>
           <height>158</height>
          </rect>
         </property>
@@ -699,7 +717,7 @@
         </property>
         <property name="maximumSize">
          <size>
-          <width>458</width>
+          <width>550</width>
           <height>158</height>
          </size>
         </property>
@@ -714,7 +732,7 @@
           <rect>
            <x>10</x>
            <y>10</y>
-           <width>478</width>
+           <width>471</width>
            <height>145</height>
           </rect>
          </property>
@@ -737,6 +755,12 @@
               <height>20</height>
              </size>
             </property>
+            <property name="verticalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
            </widget>
           </item>
           <item row="4" column="0">
@@ -753,6 +777,12 @@
               <width>16777215</width>
               <height>20</height>
              </size>
+            </property>
+            <property name="verticalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
             </property>
            </widget>
           </item>
@@ -999,6 +1029,12 @@
              <height>20</height>
             </size>
            </property>
+           <property name="verticalScrollBarPolicy">
+            <enum>Qt::ScrollBarAlwaysOff</enum>
+           </property>
+           <property name="horizontalScrollBarPolicy">
+            <enum>Qt::ScrollBarAlwaysOff</enum>
+           </property>
           </widget>
          </item>
          <item row="2" column="2" colspan="2">
@@ -1009,6 +1045,12 @@
              <height>20</height>
             </size>
            </property>
+           <property name="verticalScrollBarPolicy">
+            <enum>Qt::ScrollBarAlwaysOff</enum>
+           </property>
+           <property name="horizontalScrollBarPolicy">
+            <enum>Qt::ScrollBarAlwaysOff</enum>
+           </property>
           </widget>
          </item>
          <item row="1" column="2" colspan="2">
@@ -1018,6 +1060,12 @@
              <width>16777215</width>
              <height>20</height>
             </size>
+           </property>
+           <property name="verticalScrollBarPolicy">
+            <enum>Qt::ScrollBarAlwaysOff</enum>
+           </property>
+           <property name="horizontalScrollBarPolicy">
+            <enum>Qt::ScrollBarAlwaysOff</enum>
            </property>
           </widget>
          </item>
@@ -1049,24 +1097,8 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="0" column="0">
-         <layout class="QGridLayout" name="gridLayout_6" rowstretch="9,0,0" columnstretch="1,0,0">
-          <item row="2" column="0">
-           <widget class="QPlainTextEdit" name="streamLinkBox">
-            <property name="minimumSize">
-             <size>
-              <width>200</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>30</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0" colspan="2">
+         <layout class="QGridLayout" name="gridLayout_6" rowstretch="9,0,0,0" columnstretch="1,0,0,0">
+          <item row="1" column="0" colspan="4">
            <widget class="QLabel" name="label_17">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -1106,7 +1138,23 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="0" colspan="2">
+          <item row="2" column="2">
+           <widget class="QPlainTextEdit" name="streamLinkBox">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>30</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="4">
            <widget class="QLabel" name="videoStream">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -1129,12 +1177,31 @@
            </widget>
           </item>
           <item row="2" column="1">
+           <widget class="QPushButton" name="stopStreamButton">
+            <property name="maximumSize">
+             <size>
+              <width>90</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Stop Stream</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
            <widget class="QPushButton" name="startStreamButton">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>90</width>
+              <height>16777215</height>
+             </size>
             </property>
             <property name="text">
              <string>Start Stream</string>
@@ -1199,7 +1266,7 @@
              <item row="7" column="2">
               <widget class="QLabel" name="label_43">
                <property name="text">
-                <string>NetEastVel</string>
+                <string>NedEastVel</string>
                </property>
               </widget>
              </item>
@@ -1333,7 +1400,7 @@
               </widget>
              </item>
              <item row="7" column="3">
-              <widget class="QPlainTextEdit" name="netEastVel">
+              <widget class="QPlainTextEdit" name="nedEastVel">
                <property name="maximumSize">
                 <size>
                  <width>16777215</width>
@@ -1355,12 +1422,12 @@
              <item row="6" column="2">
               <widget class="QLabel" name="label_42">
                <property name="text">
-                <string>NetNorthVel</string>
+                <string>NedNorthVel</string>
                </property>
               </widget>
              </item>
              <item row="6" column="3">
-              <widget class="QPlainTextEdit" name="netNorthVelBox">
+              <widget class="QPlainTextEdit" name="nedNorthVelBox">
                <property name="maximumSize">
                 <size>
                  <width>16777215</width>
@@ -1391,7 +1458,7 @@
               </widget>
              </item>
              <item row="8" column="3">
-              <widget class="QPlainTextEdit" name="netDownVel">
+              <widget class="QPlainTextEdit" name="nedDownVel">
                <property name="maximumSize">
                 <size>
                  <width>16777215</width>
@@ -1403,7 +1470,7 @@
              <item row="8" column="2">
               <widget class="QLabel" name="label_44">
                <property name="text">
-                <string>NetDownVel</string>
+                <string>NedDownVel</string>
                </property>
               </widget>
              </item>
@@ -1446,7 +1513,7 @@
                <property name="frameShadow">
                 <enum>QFrame::Raised</enum>
                </property>
-               <layout class="QGridLayout" name="gridLayout_9" columnstretch="1,0,0,0">
+               <layout class="QGridLayout" name="gridLayout_9" columnstretch="1,0,0">
                 <item row="1" column="2">
                  <widget class="QPushButton" name="RefreshRFDCOM">
                   <property name="minimumSize">
@@ -1724,7 +1791,14 @@
               </widget>
              </item>
              <item row="14" column="1">
-              <widget class="QPlainTextEdit" name="pressureSensorTempBox"/>
+              <widget class="QPlainTextEdit" name="pressureSensorTempBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -1742,7 +1816,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1135</width>
+     <width>1040</width>
      <height>26</height>
     </rect>
    </property>

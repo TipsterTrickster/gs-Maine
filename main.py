@@ -139,6 +139,7 @@ class Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.openPredictionButton.clicked.connect(self.autoPredict)
         self.getAscentRateButton.clicked.connect(self.ascentRate)
         self.RFDComboBox.setCurrentIndex(self.comPortCounter - 1)
+        self.stopStreamButton.clicked.connect(self.stopStream)
 
         self.Worker2 = Worker2()
 
@@ -147,60 +148,100 @@ class Window(QtWidgets.QMainWindow, Ui_MainWindow):
         comport = self.portNames[self.RFDComboBox.currentIndex()]
 
         self.RefreshRFDCOM.clicked.connect(self.refreshRFDList)
+
+
+        header = ["Packet Number", "SIV", "FixType", "Latitude", \
+                "Longitude", "Altitude", "Year", "Month", "Day", \
+                "Hour", "Min", "Sec", "NNV", "NEV", "NDV", "Battery" ,\
+                "3v3 Supply", "5v Supply", "Radio Supply", "Analog Internal", \
+                "Analog External", "Altimeter Temp", "Digital Internal", \
+                "Digital Eternal", "Pressure", "Accel A", "Accel Y", "Accel z", \
+                "Pitch", "Roll", "Yaw"]
+        
+        global packet_count
+        global fileName
+        global file
+
+        packet_count = 0
+        fileName = "RFD900x_Data.csv"
+        file = open(fileName, "a")
+        file.close()
+
+        with open(fileName, "a", newline = '\n') as f:
+            writer = csv.writer(f, delimiter=',')
+            writer.writerow(header)
+            file.close()
         
     def ascentRate(self):
         self.ascentRateBox.setPlainText(str(self.Balloon.ascentRate))
 
     def autoPredict(self):
-        self.Balloon.get_coor_alt()
-
-        lat = self.Balloon.get_coor_alt()[0]
-        lon = self.Balloon.get_coor_alt()[1]
-        current_alt = self.Balloon.get_coor_alt()[2]
-        ascent = self.ascentRateBox.toPlainText()
-        descent = self.descentRateBox.toPlainText()
-
-        if(Balloon_Coordinates.ascentRate >= 0):
-            burst = self.burstAltitudeBox.toPlainText()
+        try:
+            self.Balloon.get_coor_alt()
+        except:
+            self.statusBox.setPlainText("No IMEI Number Selected")
         else:
-            burst = current_alt + 1
+            lat = self.Balloon.get_coor_alt()[0]
+            lon = self.Balloon.get_coor_alt()[1]
+            current_alt = self.Balloon.get_coor_alt()[2]
+            ascent = self.ascentRateBox.toPlainText()
+            descent = self.descentRateBox.toPlainText()
 
-        options = webdriver.ChromeOptions()
-        options.add_experimental_option("detach", True)
-        options.add_argument("--start-maximized")
-        # Using Chrome to access web
-        driver = webdriver.Chrome(options=options)
-        # Open the website
-        driver.get('https://predict.sondehub.org/')
+            if(Balloon_Coordinates.ascentRate >= 0):
+                burst = self.burstAltitudeBox.toPlainText()
+            else:
+                burst = current_alt + 1
 
-        # enters balloon current position
-        driver.find_element(By.ID, "lat").clear()
-        driver.find_element(By.ID, "lat").send_keys(lat)
+            options = webdriver.ChromeOptions()
+            options.add_experimental_option("detach", True)
+            options.add_argument("--start-maximized")
+            # Using Chrome to access web
+            driver = webdriver.Chrome(options=options)
+            # Open the website
+            driver.get('https://predict.sondehub.org/')
 
-        driver.find_element(By.ID, "lon").clear()
-        driver.find_element(By.ID, "lon").send_keys(lon)
+            # enters balloon current position
+            driver.find_element(By.ID, "lat").clear()
+            driver.find_element(By.ID, "lat").send_keys(lat)
 
-        driver.find_element(By.ID, "initial_alt").clear()
-        driver.find_element(By.ID, "initial_alt").send_keys(current_alt)
+            driver.find_element(By.ID, "lon").clear()
+            driver.find_element(By.ID, "lon").send_keys(lon)
 
-        driver.find_element(By.ID, "ascent").clear()
-        driver.find_element(By.ID, "ascent").send_keys(ascent)
+            driver.find_element(By.ID, "initial_alt").clear()
+            driver.find_element(By.ID, "initial_alt").send_keys(current_alt)
 
-        driver.find_element(By.ID, "drag").clear()
-        driver.find_element(By.ID, "drag").send_keys(descent)
+            driver.find_element(By.ID, "ascent").clear()
+            driver.find_element(By.ID, "ascent").send_keys(ascent)
 
-        driver.find_element(By.ID, "burst").clear()
-        driver.find_element(By.ID, "burst").send_keys(burst)
+            driver.find_element(By.ID, "drag").clear()
+            driver.find_element(By.ID, "drag").send_keys(descent)
 
-        driver.find_element(By.ID, "run_pred_btn").click()
+            driver.find_element(By.ID, "burst").clear()
+            driver.find_element(By.ID, "burst").send_keys(burst)
+
+            driver.find_element(By.ID, "run_pred_btn").click()
 
     def connectToRFD(self):
         self.Worker2.start()
         self.Worker2.packetNumber.connect(self.displayRFD)
     
     def displayRFD(self, RFDInfo):
+
+        global packet_count
+
+        finalData = xx.split(",")
+        if len(finalData) > 10:
+            with open(fileName, "a", newline = '\n') as f:
+                writer = csv.writer(f, delimiter=',')
+                writer.writerow(finalData)
+                packet_count = packet_count + 1
+                file.close()
+
         if len(RFDInfo) >=31:
             self.currentPacketBox.setPlainText(str(RFDInfo[0].strip()))
+            packet = RFDInfo[0].strip()
+            self.packetsReceivedBox.setPlainText(str(packet_count)+ "/" + str(packet) + ", " + \
+            str(round(((int(packet_count)/int(packet))*100),2)) + "%")
             self.dateBox.setPlainText(str(RFDInfo[6]) + "-" + str(RFDInfo[7]) + "-" + str(RFDInfo[8]))
             self.timeBox.setPlainText(str(RFDInfo[9]) + ":" + str(RFDInfo[10]) + ":" + str(RFDInfo[11]))
             self.batteryVoltageBox.setPlainText(str(RFDInfo[15]))
@@ -213,11 +254,38 @@ class Window(QtWidgets.QMainWindow, Ui_MainWindow):
             self.digitalExternalTempBox.setPlainText(str(RFDInfo[23]))
             self.pressureSensorTempBox.setPlainText(str(RFDInfo[21]))
             self.satInViewBox.setPlainText(str(RFDInfo[1]))
-            self.latitudeBox.setPlainText(str(RFDInfo[3]))
+            self.latitudeBox.setPlainText(str(int(RFDInfo[3]) * .0000001))
+            self.longitudeBox.setPlainText(str(int(RFDInfo[4]) * .0000001))
+            self.altitudeBox.setPlainText(str(int(RFDInfo[5]) / 1000))
+            self.pressureBox.setPlainText(str(RFDInfo[24]))
+            self.nedNorthVelBox.setPlainText(str(RFDInfo[12]))
+            self.nedEastVel.setPlainText(str(RFDInfo[13]))
+            self.nedDownVel.setPlainText(str(RFDInfo[14]))
+            self.accelXBox.setPlainText(str(RFDInfo[25]))
+            self.accelYBox.setPlainText(str(RFDInfo[26]))
+            self.accelZBox.setPlainText(str(RFDInfo[27]))
+            self.pitchBox.setPlainText(str(RFDInfo[28]))
+            self.rollBox.setPlainText(str(RFDInfo[29]))
+            self.yawBox.setPlainText(str(RFDInfo[30]))
 
-            self.fixTypeBox.setPlainText(str(RFDInfo[2]))
+            fix = str(RFDInfo[2])
+            a1 = ""
+            if fix != "":
+                if int(fix) == 0:
+                    a1 = "No Fix"
+                elif int(fix) == 1:
+                    a1 ="Dead Reckoning"
+                elif int(fix) == 2:
+                    a1 ="2D"
+                elif int(fix) == 3:
+                    a1 ="3D"
+                elif int(fix) == 4:
+                    a1 ="GNSS + Dead Reckoning"
+
+            self.fixTypeBox.setPlainText(a1)
 
     def startStream(self):
+        self.Worker1.stop()
         global streamLink
         if(self.streamLinkBox.toPlainText() == ''):
             streamLink = 0
@@ -228,6 +296,9 @@ class Window(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.Worker1.start()
         self.Worker1.ImageUpdate.connect(self.ImageUpdateSlot)
+    
+    def stopStream(self):
+        self.Worker1.stop()
 
     def ImageUpdateSlot(self, Image):
         self.videoStream.setPixmap(QPixmap.fromImage(Image))
@@ -613,6 +684,9 @@ class Worker1(QThread):
             else:
                 break
         Capture.release()
+    def stop(self):
+        self.ThreadActive = False
+        self.quit()
 
 class Worker2(QThread):
     packetNumber = pyqtSignal(list)
@@ -621,6 +695,7 @@ class Worker2(QThread):
         ser = serial.Serial( port = comport, baudrate = 57600, parity = serial.PARITY_NONE, stopbits = serial.STOPBITS_ONE, bytesize = serial.EIGHTBITS, timeout = 1 )
         while self.ThreadActive:
             y = ser.readline()
+            global xx
             xx = y.decode('utf-8')
             xxx = str(xx)
             xxxx = xxx.split(",")
