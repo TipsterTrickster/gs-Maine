@@ -23,9 +23,9 @@ https://pypi.org/project/PyQt5/
 -------------------------------------------------------------------------------
 """
 
-from PyQt5 import QtWidgets, QtCore
+from PyQt5 import QtWidgets
 from PyQt5.QtCore import QThread, QObject, pyqtSignal, Qt, pyqtSlot
-from PyQt5.QtWidgets import QCompleter, QApplication, QDesktopWidget, QVBoxLayout
+from PyQt5.QtWidgets import QCompleter, QApplication
 from PyQt5.QtGui import *
 # from designerFile import Ui_MainWindow
 from MaineDesigner import Ui_MainWindow
@@ -40,9 +40,6 @@ import time
 from sunposition import sunpos
 from datetime import datetime
 import csv
-import statistics
-import numpy as np
-import os
 import cv2
 from selenium import webdriver
 from selenium.webdriver.common.by import By
