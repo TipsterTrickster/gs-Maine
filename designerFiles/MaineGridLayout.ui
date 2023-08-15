@@ -408,7 +408,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>491</width>
+          <width>550</width>
           <height>159</height>
          </rect>
         </property>
@@ -435,11 +435,32 @@
           <rect>
            <x>10</x>
            <y>30</y>
-           <width>471</width>
-           <height>125</height>
+           <width>531</width>
+           <height>123</height>
           </rect>
          </property>
-         <layout class="QGridLayout" name="gridLayout" columnstretch="1,0,0">
+         <layout class="QGridLayout" name="gridLayout" columnstretch="1,0,0,0">
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>Select Arduino From the List Below</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="saveIMEIButton">
+            <property name="text">
+             <string>Save IMEI</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QPushButton" name="connectToArduinoButton">
+            <property name="text">
+             <string>Connect to Arduino</string>
+            </property>
+           </widget>
+          </item>
           <item row="3" column="2">
            <widget class="QPushButton" name="refreshCOMPortsButton">
             <property name="text">
@@ -447,15 +468,11 @@
             </property>
            </widget>
           </item>
+          <item row="1" column="0">
+           <widget class="QComboBox" name="IMEIComboBox"/>
+          </item>
           <item row="3" column="0">
            <widget class="QComboBox" name="COMPortComboBox"/>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_11">
-            <property name="text">
-             <string>Select Arduino From the List Below</string>
-            </property>
-           </widget>
           </item>
           <item row="0" column="0">
            <widget class="QLabel" name="label_4">
@@ -471,13 +488,10 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QComboBox" name="IMEIComboBox"/>
-          </item>
-          <item row="3" column="1">
-           <widget class="QPushButton" name="connectToArduinoButton">
+          <item row="1" column="3">
+           <widget class="QPushButton" name="loadIMEIButton">
             <property name="text">
-             <string>Connect to Arduino</string>
+             <string>Load IMEI</string>
             </property>
            </widget>
           </item>
@@ -512,9 +526,9 @@
        <widget class="QPushButton" name="loadPositionData">
         <property name="geometry">
          <rect>
-          <x>50</x>
+          <x>10</x>
           <y>160</y>
-          <width>150</width>
+          <width>261</width>
           <height>28</height>
          </rect>
         </property>
@@ -526,7 +540,7 @@
         </property>
         <property name="maximumSize">
          <size>
-          <width>100</width>
+          <width>261</width>
           <height>16777215</height>
          </size>
         </property>
@@ -534,37 +548,12 @@
          <string>Load Position Data</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="newPosition">
-        <property name="geometry">
-         <rect>
-          <x>270</x>
-          <y>160</y>
-          <width>150</width>
-          <height>28</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>150</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>100</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>New Position</string>
-        </property>
-       </widget>
        <widget class="QFrame" name="frame_2">
         <property name="geometry">
          <rect>
           <x>0</x>
           <y>190</y>
-          <width>491</width>
+          <width>550</width>
           <height>163</height>
          </rect>
         </property>
@@ -591,7 +580,7 @@
           <rect>
            <x>10</x>
            <y>10</y>
-           <width>471</width>
+           <width>531</width>
            <height>151</height>
           </rect>
          </property>
@@ -705,7 +694,7 @@
          <rect>
           <x>0</x>
           <y>360</y>
-          <width>491</width>
+          <width>550</width>
           <height>158</height>
          </rect>
         </property>
@@ -732,14 +721,56 @@
           <rect>
            <x>10</x>
            <y>10</y>
-           <width>471</width>
-           <height>145</height>
+           <width>531</width>
+           <height>141</height>
           </rect>
          </property>
          <layout class="QFormLayout" name="formLayout_4">
           <property name="labelAlignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
           </property>
+          <item row="0" column="0" colspan="2">
+           <widget class="QLabel" name="label_27">
+            <property name="styleSheet">
+             <string notr="true">font: 75 11pt &quot;MS Shell Dlg 2&quot;;</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;3. Sun Calibration&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::AutoText</enum>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="label_7">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Point dish at the Sun and click button below</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QPushButton" name="calculateStartingPosButton">
+            <property name="text">
+             <string>Calculate Starting Position</string>
+            </property>
+           </widget>
+          </item>
           <item row="3" column="0">
            <widget class="QLabel" name="label_5">
             <property name="text">
@@ -786,45 +817,10 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="QLabel" name="label_7">
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>40</height>
-             </size>
-            </property>
+          <item row="2" column="0">
+           <widget class="QPushButton" name="loadCalibrationButton">
             <property name="text">
-             <string>Point dish at the Sun and click button below</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QPushButton" name="calculateStartingPosButton">
-            <property name="text">
-             <string>Calculate Starting Position</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0" colspan="2">
-           <widget class="QLabel" name="label_27">
-            <property name="styleSheet">
-             <string notr="true">font: 75 11pt &quot;MS Shell Dlg 2&quot;;</string>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::NoFrame</enum>
-            </property>
-            <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;3. Sun Calibration&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="textFormat">
-             <enum>Qt::AutoText</enum>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
+             <string>Load Calibration Data</string>
             </property>
            </widget>
           </item>
@@ -834,9 +830,9 @@
        <widget class="QPushButton" name="GPSRequestButton">
         <property name="geometry">
          <rect>
-          <x>120</x>
-          <y>520</y>
-          <width>201</width>
+          <x>280</x>
+          <y>160</y>
+          <width>261</width>
           <height>31</height>
          </rect>
         </property>
@@ -1097,7 +1093,7 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="0" column="0">
-         <layout class="QGridLayout" name="gridLayout_6" rowstretch="9,0,0,0" columnstretch="1,0,0,0">
+         <layout class="QGridLayout" name="gridLayout_6" rowstretch="9,0,0" columnstretch="1,0,0,0">
           <item row="1" column="0" colspan="4">
            <widget class="QLabel" name="label_17">
             <property name="sizePolicy">

@@ -23,7 +23,7 @@ https://pypi.org/project/PyQt5/
 -------------------------------------------------------------------------------
 """
 
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import QThread, QObject, pyqtSignal, Qt, pyqtSlot
 from PyQt5.QtWidgets import QCompleter, QApplication
 from PyQt5.QtGui import *
@@ -99,7 +99,7 @@ class Window(QtWidgets.QMainWindow, Ui_MainWindow):
         self.calibrateButton.clicked.connect(self.calibrate)
 
         self.loadPositionData.clicked.connect(self.loadPos)
-        self.newPosition.clicked.connect(self.newPos)
+        self.loadCalibrationButton.clicked.connect(self.loadCalibration)
 
         self.refreshCOMPortsButton.clicked.connect(self.refreshArduinoList)
         self.connectToArduinoButton.clicked.connect(self.connectToArduino)
@@ -153,9 +153,15 @@ class Window(QtWidgets.QMainWindow, Ui_MainWindow):
         fileName = "RFD900x_Data.csv"
         file = open(fileName, "a")
         file.close()
+
+        self.saveIMEIButton.clicked.connect(self.saveIMEI)
+        self.loadIMEIButton.clicked.connect(self.loadIMEI)
         
     def ascentRate(self):
-        self.ascentRateBox.setPlainText(str(self.Balloon.ascentRate))
+        try:
+            self.ascentRateBox.setPlainText(str(self.Balloon.ascentRate))
+        except:
+            self.statusBox.setPlainText("No IMEI Selected")
 
     def autoPredict(self):
         try:
@@ -362,24 +368,56 @@ class Window(QtWidgets.QMainWindow, Ui_MainWindow):
 
         return
     
+    def saveIMEI(self):
+        try:
+            with open("savedIMEI.txt", "w") as f:
+                f.write(self.Balloon.imei)
+                f.close()
+                self.statusBox.setPlainText("IMEI number saved to savedIMEI.csv")
+        except:
+            self.statusBox.setPlainText("No IMEI Selected")
+
+    def loadIMEI(self):
+        with open("savedIMEI.txt", "r") as f:
+            index = self.IMEIComboBox.findText(str(f.readline()), QtCore.Qt.MatchFixedString)
+            if index >= 0:
+                self.IMEIComboBox.setCurrentIndex(index)
+            else:
+                self.statusBox.setPlainText("saved IMEI not valid")
+            f.close()
+
     def newPos(self):
         self.statusBox.setPlainText("Manually enter coordinates and altitude")
 
         return
     
     def loadPos(self):
-        self.statusBox.setPlainText("Opening gs_log.csv")
-        with open("gs_log.csv", "r") as csv_file:
-            csv_reader = csv.reader(csv_file, delimiter=',')
-            for row in csv_reader:
-                latStr = row[0]
-                self.GSLatBox.setPlainText(str(latStr))
-                lonStr = row[1]
-                self.GSLongBox.setPlainText(str(lonStr))
-                altStr = row[2]
-                self.GSAltBox.setPlainText(str(altStr))
+        try:
+            self.statusBox.setPlainText("Opening gs_log.csv")
+            with open("gs_log.csv", "r") as csv_file:
+                csv_reader = csv.reader(csv_file, delimiter=',')
+                for row in csv_reader:
+                    latStr = row[0]
+                    self.GSLatBox.setPlainText(str(latStr))
+                    lonStr = row[1]
+                    self.GSLongBox.setPlainText(str(lonStr))
+                    altStr = row[2]
+                    self.GSAltBox.setPlainText(str(altStr))
+        except:
+            self.statusBox.setPlainText("Error opening gs_log.csv")
 
-        return
+    def loadCalibration(self):
+        try:
+            self.statusBox.setPlainText("Opening calibration.csv")
+            with open("calibration.csv", "r") as csv_file:
+                csv_reader = csv.reader(csv_file, delimiter=',')
+                for row in csv_reader:
+                    azStr = row[0]
+                    self.startingAzimuthBox.setPlainText(str(azStr))
+                    elevStr = row[1]
+                    self.startingElevationBox.setPlainText(str(elevStr))
+        except:
+            self.statusBox.setPlainText("Error opening calibration.csv")
 
     def tiltUp(self):
         # if an arduino is connected, uses GSArduino to adjust the tilt up
@@ -499,6 +537,9 @@ class Window(QtWidgets.QMainWindow, Ui_MainWindow):
 
             self.startingAzimuthBox.setPlainText(str(az))
             self.startingElevationBox.setPlainText(str(elev))
+            with open('calibration.csv', mode='w', newline='') as gs_log:
+                gs_writer = csv.writer(gs_log, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+                gs_writer.writerow([az, elev])
 
         else:
             self.statusBox.setPlainText("Please set ground station location "
