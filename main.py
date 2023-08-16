@@ -537,9 +537,6 @@ class Window(QtWidgets.QMainWindow, Ui_MainWindow):
 
             self.startingAzimuthBox.setPlainText(str(az))
             self.startingElevationBox.setPlainText(str(elev))
-            with open('calibration.csv', mode='w', newline='') as gs_log:
-                gs_writer = csv.writer(gs_log, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-                gs_writer.writerow([az, elev])
 
         else:
             self.statusBox.setPlainText("Please set ground station location "
@@ -562,6 +559,9 @@ class Window(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.GSArduino.calibrate(startingAzimuth, startingElevation)
                 self.calibrated = True
                 self.statusBox.setPlainText("Successfully calibrated!")
+                with open('calibration.csv', mode='w', newline='') as gs_log:
+                    gs_writer = csv.writer(gs_log, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+                    gs_writer.writerow([startingAzimuth, startingElevation])
             except ValueError:
                 print("numbers only for initial azimuth and elevation")
                 self.statusBox.setPlainText("Invalid input for initial azimuth and elevation")
