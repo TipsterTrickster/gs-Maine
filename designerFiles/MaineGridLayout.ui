@@ -695,7 +695,7 @@
           <x>0</x>
           <y>360</y>
           <width>550</width>
-          <height>158</height>
+          <height>186</height>
          </rect>
         </property>
         <property name="sizePolicy">
@@ -707,7 +707,7 @@
         <property name="maximumSize">
          <size>
           <width>550</width>
-          <height>158</height>
+          <height>186</height>
          </size>
         </property>
         <property name="frameShape">
@@ -722,7 +722,7 @@
            <x>10</x>
            <y>10</y>
            <width>531</width>
-           <height>141</height>
+           <height>171</height>
           </rect>
          </property>
          <layout class="QFormLayout" name="formLayout_4">
@@ -824,6 +824,32 @@
             </property>
            </widget>
           </item>
+          <item row="5" column="1">
+           <widget class="QPushButton" name="calibrateButton">
+            <property name="minimumSize">
+             <size>
+              <width>136</width>
+              <height>28</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Set Starting Position</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QPushButton" name="backToSunButton_2">
+            <property name="minimumSize">
+             <size>
+              <width>136</width>
+              <height>28</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Return to Sun Position</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </widget>
@@ -857,72 +883,25 @@
           <x>11</x>
           <y>11</y>
           <width>471</width>
-          <height>411</height>
+          <height>371</height>
          </rect>
         </property>
-        <layout class="QGridLayout" name="gridLayout_2" rowstretch="5,0,0,0,0,0,0,0,0">
-         <item row="0" column="1">
-          <widget class="QPushButton" name="backToSunButton">
-           <property name="minimumSize">
-            <size>
-             <width>136</width>
-             <height>28</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Return to Sun Position</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLabel" name="label_8">
-           <property name="minimumSize">
-            <size>
-             <width>152</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Line of Sight Distance (m): </string>
-           </property>
-          </widget>
-         </item>
+        <layout class="QGridLayout" name="gridLayout_2" rowstretch="5,0,0,0,0,0,0,0">
          <item row="5" column="1">
-          <widget class="QLabel" name="label_15">
-           <property name="text">
-            <string>Expected Burst Altitude (m)</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QLabel" name="label_10">
-           <property name="text">
-            <string>Elevation: </string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QLabel" name="label_9">
-           <property name="text">
-            <string>Azimuth: </string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="1">
           <widget class="QLabel" name="label_16">
            <property name="text">
             <string>Ascent Rate (m/s)</string>
            </property>
           </widget>
          </item>
-         <item row="7" column="1">
-          <widget class="QLabel" name="label_19">
+         <item row="7" column="1" colspan="3">
+          <widget class="QPushButton" name="openPredictionButton">
            <property name="text">
-            <string>Descent rate (m/s)</string>
+            <string>Open Prediction</string>
            </property>
           </widget>
          </item>
-         <item row="6" column="2">
+         <item row="5" column="2">
           <widget class="QPlainTextEdit" name="ascentRateBox">
            <property name="maximumSize">
             <size>
@@ -941,59 +920,7 @@
            </property>
           </widget>
          </item>
-         <item row="6" column="3">
-          <widget class="QPushButton" name="getAscentRateButton">
-           <property name="text">
-            <string>Get Ascent Rate</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="2" colspan="2">
-          <widget class="QPlainTextEdit" name="burstAltitudeBox">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>25</height>
-            </size>
-           </property>
-           <property name="verticalScrollBarPolicy">
-            <enum>Qt::ScrollBarAlwaysOff</enum>
-           </property>
-           <property name="horizontalScrollBarPolicy">
-            <enum>Qt::ScrollBarAlwaysOff</enum>
-           </property>
-           <property name="plainText">
-            <string>32000</string>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="2" colspan="2">
-          <widget class="QPlainTextEdit" name="descentRateBox">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>25</height>
-            </size>
-           </property>
-           <property name="verticalScrollBarPolicy">
-            <enum>Qt::ScrollBarAlwaysOff</enum>
-           </property>
-           <property name="horizontalScrollBarPolicy">
-            <enum>Qt::ScrollBarAlwaysOff</enum>
-           </property>
-           <property name="plainText">
-            <string>7</string>
-           </property>
-          </widget>
-         </item>
-         <item row="8" column="1" colspan="3">
-          <widget class="QPushButton" name="openPredictionButton">
-           <property name="text">
-            <string>Open Prediction</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1" colspan="3">
+         <item row="3" column="1" colspan="3">
           <widget class="QLabel" name="label_18">
            <property name="maximumSize">
             <size>
@@ -1017,39 +944,35 @@
            </property>
           </widget>
          </item>
-         <item row="3" column="2" colspan="2">
-          <widget class="QPlainTextEdit" name="elevationDisplay">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="verticalScrollBarPolicy">
-            <enum>Qt::ScrollBarAlwaysOff</enum>
-           </property>
-           <property name="horizontalScrollBarPolicy">
-            <enum>Qt::ScrollBarAlwaysOff</enum>
+         <item row="5" column="3">
+          <widget class="QPushButton" name="getAscentRateButton">
+           <property name="text">
+            <string>Get Ascent Rate</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="2" colspan="2">
-          <widget class="QPlainTextEdit" name="azimuthDisplay">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="verticalScrollBarPolicy">
-            <enum>Qt::ScrollBarAlwaysOff</enum>
-           </property>
-           <property name="horizontalScrollBarPolicy">
-            <enum>Qt::ScrollBarAlwaysOff</enum>
+         <item row="1" column="1">
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>Azimuth: </string>
            </property>
           </widget>
          </item>
-         <item row="1" column="2" colspan="2">
+         <item row="2" column="1">
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>Elevation: </string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QLabel" name="label_19">
+           <property name="text">
+            <string>Descent rate (m/s)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2" colspan="2">
           <widget class="QPlainTextEdit" name="distanceDisplay">
            <property name="maximumSize">
             <size>
@@ -1065,16 +988,93 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="2" colspan="2">
-          <widget class="QPushButton" name="calibrateButton">
+         <item row="6" column="2" colspan="2">
+          <widget class="QPlainTextEdit" name="descentRateBox">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="verticalScrollBarPolicy">
+            <enum>Qt::ScrollBarAlwaysOff</enum>
+           </property>
+           <property name="horizontalScrollBarPolicy">
+            <enum>Qt::ScrollBarAlwaysOff</enum>
+           </property>
+           <property name="plainText">
+            <string>7</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2" colspan="2">
+          <widget class="QPlainTextEdit" name="azimuthDisplay">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="verticalScrollBarPolicy">
+            <enum>Qt::ScrollBarAlwaysOff</enum>
+           </property>
+           <property name="horizontalScrollBarPolicy">
+            <enum>Qt::ScrollBarAlwaysOff</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_8">
            <property name="minimumSize">
             <size>
-             <width>136</width>
-             <height>28</height>
+             <width>152</width>
+             <height>20</height>
             </size>
            </property>
            <property name="text">
-            <string>Set Starting Position</string>
+            <string>Line of Sight Distance (m): </string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLabel" name="label_15">
+           <property name="text">
+            <string>Expected Burst Altitude (m)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2" colspan="2">
+          <widget class="QPlainTextEdit" name="elevationDisplay">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="verticalScrollBarPolicy">
+            <enum>Qt::ScrollBarAlwaysOff</enum>
+           </property>
+           <property name="horizontalScrollBarPolicy">
+            <enum>Qt::ScrollBarAlwaysOff</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="2" colspan="2">
+          <widget class="QPlainTextEdit" name="burstAltitudeBox">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="verticalScrollBarPolicy">
+            <enum>Qt::ScrollBarAlwaysOff</enum>
+           </property>
+           <property name="horizontalScrollBarPolicy">
+            <enum>Qt::ScrollBarAlwaysOff</enum>
+           </property>
+           <property name="plainText">
+            <string>32000</string>
            </property>
           </widget>
          </item>
