@@ -744,7 +744,6 @@ class Worker2(QThread):
             xxxx = xxx.split(",")
             self.packetNumber.emit(xxxx)
 
-
 class Worker(QObject):
     # worker class to track without making the GUI hang
     finished = pyqtSignal()
@@ -902,7 +901,6 @@ class Worker(QObject):
         calculations.close()
         self.finished.emit()
         return
-
 
 if __name__ == "__main__":
 
