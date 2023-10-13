@@ -105,7 +105,10 @@ class Balloon_Coordinates:
 
     def getTimeDiff(self):
         # finds the difference in time between the latest ping and the one before
-        req = requests.get("https://borealis.rci.montana.edu/flight?uid={}".format(self.uid))
+        try:
+            req = requests.get("https://borealis.rci.montana.edu/flight?uid={}".format(self.uid))
+        except:
+            print("couldn't get date")
         data = req.json()
 
         lastTime = [data['data'][-1][2], data['data'][-2][2]]
